@@ -11,6 +11,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 export default function Login(){
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [hasSubmitted, setHasSubmitted] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate();
     const location = useLocation();
@@ -25,6 +26,7 @@ export default function Login(){
 
     const handleLogin = async (e) =>{
         e.preventDefault()
+        setHasSubmitted(true)
         if(!email || !password) {
             dispatch(setError("Email and password are required!"))
             return
@@ -63,7 +65,7 @@ export default function Login(){
                 onChange={(e)=> setPassword(e.target.value)}
                 className ="text-black"
                  />
-                  {(!location.state?.registered && error) && (
+                  {(error && (hasSubmitted || !location.state?.registered)) && (
                     <p className='text-red-500 text-center text-sm mb-2'>{error}</p>
                   )}
 
