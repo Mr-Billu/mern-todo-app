@@ -28,8 +28,8 @@ const authSlice = createSlice({
       },
 
       setError: (state, action) => {
-        state.error = action.payload || "Something went wrong"
-
+        
+        state.error = action.payload
       },
 
       logout: (state) => {

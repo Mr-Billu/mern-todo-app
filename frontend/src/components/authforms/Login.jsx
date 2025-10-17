@@ -36,7 +36,7 @@ export default function Login(){
             dispatch(setToken(response.token))
             dispatch(setUser(response.user))
             dispatch(setError(null))
-            navigate("/")
+            navigate("/", { replace: true })
         }catch(err){
             dispatch(setError(err.message || "Login failed"))
         }finally {
